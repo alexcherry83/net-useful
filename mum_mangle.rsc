@@ -13,7 +13,7 @@ add action=mark-connection chain=input comment=WINBOX dst-port=8291 new-connecti
 add action=mark-connection chain=output new-connection-mark=winbox passthrough=yes protocol=tcp src-port=8291
 add action=mark-packet chain=input connection-mark=winbox new-packet-mark=winbox passthrough=no
 add action=mark-packet chain=output connection-mark=winbox new-packet-mark=winbox passthrough=no
-add action=mark-connection chain=prerouting comment=BWTEST dst-address=91.134.155.120 new-connection-mark=\
+add action=mark-connection chain=prerouting comment=BWTEST dst-address=100.100.100.100 new-connection-mark=\
     bwtest passthrough=yes
 add action=mark-packet chain=prerouting connection-mark=bwtest new-packet-mark=bwtest passthrough=no
 add action=mark-connection chain=prerouting comment=SpeedTest content=speedtest.net new-connection-mark=\
