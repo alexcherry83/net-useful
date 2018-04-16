@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# This is the tool for Backing up PPP customers from Splynx DB to Mikrotik. Tool grabs all Splynx customers and creates PPP secrets + Profiles for Mikrotik router
 import splynx_api
 import json
 import codecs
