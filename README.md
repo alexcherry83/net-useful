@@ -1,2 +1,2 @@
-# mikrotik-useful
-Useful Mikrotik router OS scripts
+# net-useful
+Useful Splynx and Mikrotik router OS scripts
