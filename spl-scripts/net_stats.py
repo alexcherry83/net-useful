@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Run script this way: net_stats.py <network> - for example net_stats.py 10.0.0.0/20
 
 import splynx_api
 import json
@@ -64,7 +65,6 @@ for id in range(len(sessions[1])):
 	net_lst[4].append(sessions[6][id])    
    
 
-
 ip_range = argv[1:]
 networks = split_net.c_class(ip_range)
 networks.append([])
@@ -93,12 +93,5 @@ print('Usage for networks:')
 for bit in range(len(networks[0])):
 
 	print(str(networks[0][bit]) + '.' + str(networks[1][bit]) + '.' + str(networks[2][bit]) + '.' + str(networks[3][bit]) + '/24   Download :' + str(round(networks[4][bit]/1000000,2)) + ' MB   Uplolad: ' + str(round(networks[5][bit]/1000000,2)) + ' MB   Total: ' + str(round((networks[4][bit]+networks[5][bit])/1000000,2)) + ' MB')	
-
-	
-	
-	
-	
-	
-	
 	
 	
