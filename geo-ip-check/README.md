@@ -1,3 +1,5 @@
-Script that allows check IP address information in most used GEO IP databases
+Script that allows to check IP address information in most used GEO IP databases
 
-need to clone ipregistry repository and change the return of the funtionf from print to a regular json
+geo_ip class - connects to REST of 6 geo ip databases
+please use pip install geo2ip to get maxmind module that is used to connect to it's webservice 
+also IPWhois is used to get data from RIPE or other RIR databases (pip install ipwhois)
