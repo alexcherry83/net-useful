@@ -1,0 +1,20 @@
+IP2Location : https://www.ip2location.com/dashboard
+IPgeolocation.io :  https://app.ipgeolocation.io
+AbstractAPI : https://app.abstractapi.com/#/
+IPregistry.com : https://dashboard.ipregistry.co/overview
+IPdata.co : https://dashboard.ipdata.co
+AstroIP: https://astroip.co/dashboard
+Maxmind : 
+RIPE + RIPE FTP: 
+
+
+
+Logic description
+Form asks to enter an IP address
+1. Request is sent to RIPE DB to get the Assignment range.
+Output shows The Inetnum, Org and Contact. 
+2. Second request is checking the RIPE FTP file and show inetnum output from there
+3. The range is split into /24 prefixes
+4. Per each prefix the API queries are sent to all databases and 
+are show results in the tables - one table has all /24 results per one database.
+
