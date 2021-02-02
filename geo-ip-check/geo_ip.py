@@ -1,7 +1,7 @@
 from sys import argv
 import time
 import geo_class as ip
-#need to run pip install geoip2 to install maxmind module and the make import geoip2.webservice
+import geoip2.webservice
 
 start_time = time.time()
 data = []
@@ -11,20 +11,24 @@ ipgeolocation_apiKey = ""
 abstractapi_apiKey = ""
 ipdata_apiKey = ""
 astroip_apiKey = ""
+#XXXX below is the user account on maxmind webservice
+maxmind_user = XXXXX 
+maxmind_code = ""
 
-ip_address = argv[1]
+ip_argv = argv[1]
 cache = 'yes'
 try :
     cache = argv[2]
 except:
     pass
 
+ip_object = ip.parent_data(ip_argv)
+ip_address = ip_object.ip_check()
+
 rir_location = ip.rir_data(ip_address)
 rir_data = rir_location.get_info()
 
-maxmind_webservice =  geoip2.webservice.Client(XXXX, '')  #XXXX - your maxmind ID, and then will come  maxmind webservice key as a second argument
-maxmind_data = maxmind_webservice.insights(ip_address)
-
+maxmind = ip.maxmind_data(ip_address, maxmind_user, maxmind_code)
 ip2location = ip.geo_data(ip_address, 'ip2location', ip2location_apiKey, cache)
 ipgeolocation = ip.geo_data(ip_address, 'ipgeolocation', ipgeolocation_apiKey, cache)
 ipregistry = ip.geo_data(ip_address, 'ipregistry', ipregistry_apiKey, cache)
@@ -32,7 +36,7 @@ abstractapi = ip.geo_data(ip_address, 'abstractapi', abstractapi_apiKey, cache)
 ipdata = ip.geo_data(ip_address, 'ipdata', ipdata_apiKey, cache)
 astroip = ip.geo_data(ip_address, 'astroip', astroip_apiKey, cache)
 
-
+data.append(maxmind.get_info())
 data.append(ip2location.get_info())
 data.append(ipgeolocation.get_info())
 data.append(ipregistry.get_info())
@@ -42,7 +46,7 @@ data.append(astroip.get_info())
 
 
 print(f'''
------- {rir_data["database"].capitalize()} ------
+------ {rir_data["database"].upper()} ------
 IP address :  {rir_location.ip_address}
 Network :  {rir_data["network"]}
 Type: {rir_data["type"]}
@@ -53,26 +57,12 @@ Company : {rir_data["company"]}
 Address : {rir_data["address"]}
 ASN : AS{rir_data["asn"]}
 ASN Country : {rir_data["asn_country"]}
-'''
-)
-
-print(f'''
------- Maxmind Webservice ------
-IP address :  {maxmind_data.traits.ip_address}
-Network :  {maxmind_data.traits._network}
-Country code : {maxmind_data.country.iso_code}
-Country : {maxmind_data.country.name}
-Region: {maxmind_data.subdivisions[0].names["en"]}
-City: {maxmind_data.subdivisions[1].names["en"]}
-Postal code: {maxmind_data.postal.code}
-Company : {maxmind_data.traits.organization}
-ISP: {maxmind_data.traits.isp}
-Geolocation: {maxmind_data.location.latitude}, {maxmind_data.location.longitude}
+Last updated : {rir_data["updated"]}
 '''
 )
 
 
-for i in range(6):
+for i in range(7):
     print(f'''
 ------ {data[i]["database"].capitalize()} ------
 IP address :  {ip2location.ip_address}
