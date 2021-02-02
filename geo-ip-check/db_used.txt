@@ -4,17 +4,19 @@ AbstractAPI : https://app.abstractapi.com/#/
 IPregistry.com : https://dashboard.ipregistry.co/overview
 IPdata.co : https://dashboard.ipdata.co
 AstroIP: https://astroip.co/dashboard
-Maxmind : 
-RIPE + RIPE FTP: 
-
+Maxmind : https://maxmind.com/  -  geoip2.webservice python module used
+RIPE, APNIC, ARIN, AFRINIC, LACNIB: IPwhois python module 
 
 
 Logic description
-Form asks to enter an IP address
-1. Request is sent to RIPE DB to get the Assignment range.
-Output shows The Inetnum, Org and Contact. 
-2. Second request is checking the RIPE FTP file and show inetnum output from there
-3. The range is split into /24 prefixes
-4. Per each prefix the API queries are sent to all databases and 
-are show results in the tables - one table has all /24 results per one database.
+Script geo_ip.py should be run with 2 paramenters : 
+./geo_ip.py 10.0.0.1 nocache
 
+or just
+./geo_ip.py 10.0.0.1 
+
+1. Request is sent to RIR DB(for example RIPE) to get the detailed and latest assignment information.
+Output shows combine information from the Inetnum and Org objects. 
+2. Second request checks the maxmind database
+3. The range is split into /24 prefixes and all other DBs are also storing the cache files, not not call always REST API (maxmind and RIR is always checked)
+4. The API queries are sent to all databases and show the results
