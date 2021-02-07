@@ -1,3 +1,5 @@
+# Run this file to connect to Splynx and save usage of all active customers to the file in /data/ folder
+
 import splynx_api
 import json
 import os
