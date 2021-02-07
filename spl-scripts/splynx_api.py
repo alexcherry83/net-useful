@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/local/bin/python3.7
 import hashlib
 import hmac
 from datetime import datetime
@@ -8,13 +8,27 @@ import requests
 from requests import request
 import urllib3
 import sys
+import logging
 
 """
    *Splynx API v. 1.0
    *REST API Class
    *Author: Narcisse Doudieu Siewe
  """
-        
+
+try:
+    import http.client as http_client
+except ImportError:
+    # Python 2
+    import httplib as http_client
+http_client.HTTPConnection.debuglevel = 1
+
+# You must initialize logging, otherwise you'll not see debug output.
+logging.basicConfig()
+logging.getLogger().setLevel(logging.DEBUG)
+requests_log = logging.getLogger("requests.packages.urllib3")
+requests_log.setLevel(logging.DEBUG)
+requests_log.propagate = True
          
 class SplynxApi:
   def __init__(self, url, api_key, api_secret):
@@ -24,7 +38,7 @@ class SplynxApi:
       self._sash = None
       self._nonce_v = None
       self._debug = None
-      self._version = '1.0'
+      self._version = '2.0'
       self._administrator_id = None
       self._administrator_role = None
       self._administrator_partner = None
@@ -137,8 +151,10 @@ class SplynxApi:
       try:
          if method in ('POST','PUT'):
             rs = request(method, url, headers = headers, json = param)
+         elif method in ('GET','DELETE'):
+             rs = request(method, url, headers=headers)
          else:
-            rs = request(method, url, headers = headers)
+             rs = requests.get(url, headers=headers, params=param)
       except requests.RequestException as e:
              if self.debug:
                 print("response: ", e.response, '\n')
@@ -186,6 +202,10 @@ class SplynxApi:
   """
   def api_call_get(self, path, Id=None):
       return self._request_process('GET', self._getUrl(path, Id))
+
+
+  def api_call_get_filter(self, path, param):
+      return self._request_process('GET_FILTER', self._getUrl(path), param)
     
   """
      *Send API call DELETE to Splynx API
