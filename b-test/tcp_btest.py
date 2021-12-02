@@ -3,7 +3,7 @@ import json
 from tabulate import tabulate
 from operator import itemgetter
 
-#test message
+#Class for getting and sorting all TCP sessions
 
 class tcp_bandwidth_test:
     def __init__(self, data_list):
@@ -23,7 +23,7 @@ class tcp_bandwidth_test:
             data_dict = {data[0]:data[1]}
             session_list.append(data_dict)
 
-        #Sselect only unique sessions, select only one SRC-DST and DST-SRC combination
+        #Select only unique sessions, select only one SRC-DST and DST-SRC combination
         final_sessions = []
 
         id=0
