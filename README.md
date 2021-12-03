@@ -6,7 +6,7 @@ The result shows the bandwidth usage of each single TCP session, it's duration a
 
 GEO-IP is a tool to check how IP address (the whole /24 network) is displayed in top geo ip databases. Also it displays the data from whois database, that is based on RIR database.
 
-MK CONFIGS folder have different Mikrotik configurations for queues
+MK CONFIGS folder has different Mikrotik configurations for queues
 
 SPL SCRIPTS has few useful scripts that work with SPLYNX API. 
 - ppp-mikrotik takes all Internet services from splynx and exports usernames and passwords to mikrotik PPP secrets configuration. 
