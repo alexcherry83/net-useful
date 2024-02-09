@@ -4,6 +4,7 @@ AbstractAPI : https://app.abstractapi.com/#/
 IPregistry.com : https://dashboard.ipregistry.co/overview
 IPdata.co : https://dashboard.ipdata.co
 AstroIP: https://astroip.co/dashboard
+IPinfo : https://ipinfo.io/
 Maxmind : https://maxmind.com/  -  geoip2.webservice python module used
 RIPE, APNIC, ARIN, AFRINIC, LACNIB: IPwhois python module 
 
