@@ -11,6 +11,7 @@ ipgeolocation_apiKey = ""
 abstractapi_apiKey = ""
 ipdata_apiKey = ""
 astroip_apiKey = ""
+ipinfo_apiKey = ""
 #XXXX below is the user account on maxmind webservice
 maxmind_user = XXXXX 
 maxmind_code = ""
@@ -35,6 +36,7 @@ ipregistry = ip.geo_data(ip_address, 'ipregistry', ipregistry_apiKey, cache)
 abstractapi = ip.geo_data(ip_address, 'abstractapi', abstractapi_apiKey, cache)
 ipdata = ip.geo_data(ip_address, 'ipdata', ipdata_apiKey, cache)
 astroip = ip.geo_data(ip_address, 'astroip', astroip_apiKey, cache)
+ipinfo = ip.geo_data(ip_address, 'ipinfo', ipinfo_apiKey, cache)
 
 data.append(maxmind.get_info())
 data.append(ip2location.get_info())
@@ -43,6 +45,7 @@ data.append(ipregistry.get_info())
 data.append(abstractapi.get_info())
 data.append(ipdata.get_info())
 data.append(astroip.get_info())
+data.append(ipinfo.get_info())
 
 
 print(f'''
