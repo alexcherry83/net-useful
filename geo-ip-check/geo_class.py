@@ -76,6 +76,9 @@ class geo_data(parent_data):
         elif self.service == 'astroip':
             self.url = 'https://api.astroip.co/'+self.ip_address
 
+        elif self.service == 'ipinfo':
+            self.url = 'https://ipinfo.io/'+self.ip_address
+
         try:
             url = self.url
 
@@ -95,6 +98,9 @@ class geo_data(parent_data):
                 params = {'api-key' : self.apiKey}
 
             elif self.service == 'astroip':
+                params = dict(api_key=self.apiKey)
+            
+            elif self.service == 'ipinfo':
                 params = dict(api_key=self.apiKey)
 
             getInfo = requests.get(url=url, params=params)
@@ -212,6 +218,17 @@ class geo_data(parent_data):
                             'isp': ip_addr["asn"]["asn"] if (ip_addr["asn"] is not None) else '',
                             'latitude': ip_addr["geo"]["latitude"],
                             'longitude': ip_addr["geo"]["longitude"]}
+        
+        elif self.service == 'ipinfo':
+                geo_info = {'database': 'ipinfo.io',
+                            'code': ip_addr["country"],
+                            'country': '',
+                            'region': ip_addr["region"],
+                            'city': ip_addr["city"],
+                            'company': '',
+                            'isp': ip_addr["org"],
+                            'latitude': ip_addr["loc"].split(",")[0],
+                            'longitude': ip_addr["loc"].split(",")[1]}
 
 
 
