@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-# Script connects to the file that was created by splynx_stats.py and grabs usage for selected period
+# Script connects to the file that was created by splynx_stats.py and gets usage for selected period
 # Run script this way: net_stats.py <network> - for example net_stats.py 2021-01-01 2021-02-01, it will show all usage per /24 range from the selected period
 import splynx_stats as s
 from sys import argv
